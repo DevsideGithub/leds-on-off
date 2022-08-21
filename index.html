@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leds on off</title>
+</head>
+
+<body>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 40px;
+            background: #dcdcdc;
+        }
+
+        .led {
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            box-shadow: 0 2px 8px #00000066, 0 2px 1px #00000014;
+            cursor: pointer;
+        }
+
+        .led:after {
+            display: block;
+            content: "";
+            width: 60px;
+            height: 48px;
+            border-radius: 100%;
+            margin: 4px auto;
+            background: #ffffff;
+            background: linear-gradient(0deg,
+                    #ffffff33 0%,
+                    #ffffffcc 100%);
+        }
+
+        .led-green {
+            background: #028338;
+            background: linear-gradient(0deg,
+                    #87fac6 0%,
+                    #028338 100%);
+        }
+
+        .led-green.on {
+            background: radial-gradient(circle,
+                    #ffffff 0%,
+                    #ffffff 50%,
+                    #00af4f 100%);
+            box-shadow: 0 2px 8px #00000066, 0 2px 1px #00000014,
+                0 0 30px #00af4f, 0 0 5px 5px #ffffff;
+        }
+
+        .led-red {
+            background: #971201;
+            background: linear-gradient(0deg,
+                    #f78d8d 0%,
+                    #971201 100%);
+        }
+
+        .led-red.on {
+            background: radial-gradient(circle,
+                    #ffffff 0%,
+                    #ffffff 50%,
+                    #af1400 100%);
+            box-shadow: 0 2px 8px #00000066, 0 2px 1px #00000014,
+                0 0 30px #af1400, 0 0 5px 5px #ffffff;
+        }
+    </style>
+    <div class="led led-green"></div>
+    <div class="led led-red"></div>
+    <script>
+        function toggle(element, className) {
+            let classes = element.classList;
+            classes.contains(className)
+                ? classes.remove(className)
+                : classes.add(className);
+        }
+
+        let leds = document.querySelectorAll(".led");
+
+        leds.forEach((led) => {
+            led.addEventListener("click", (event) => {
+                let element = event.target;
+                toggle(element, "on");
+            });
+        });
+    </script>
+</body>
+
+</html>
